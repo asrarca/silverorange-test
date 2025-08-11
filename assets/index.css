@@ -124,3 +124,6 @@ main {
   display: block;
 }
 
+.form-submit {
+  text-align: center;
+}
