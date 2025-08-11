@@ -34,6 +34,15 @@ class Checkout extends Layout
                                     </tr>
                                 </tbody>
                             </table>
+
+                        </div>
+                    </div>
+                    <div class="frame">
+                        <div class="frame__contents">
+                            <div class="checkbox promo-opt-in">
+                                <input type="checkbox" name="promo-opt-in" id="promo-opt-in" title="Opt-in for the Rise &amp; Shine program" />
+                                <label for="promo-opt-in">With our "Rise &amp; Shine" beta program, you get early access to new features, but they may not always work perfectly. You can change your beta preference at any time after you join.</label>
+                            </div>
                         </div>
                     </div>
                     <div class="frame">

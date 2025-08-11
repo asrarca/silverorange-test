@@ -111,3 +111,11 @@ main {
   border-bottom: 1px solid #eee;
   padding: 0.5rem;
 }
+
+.checkbox > input[type="checkbox"] {
+  float: left;
+}
+.checkbox > label {
+  margin-left: 30px;
+  display: block;
+}
