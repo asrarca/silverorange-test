@@ -28,12 +28,21 @@ class Checkout extends Layout
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Product Thumbnail</td>
+                                        <td class="product-image"><img src="/product-images/product.jpg" srcset="/product-images/product-1x.jpg 1x, /product-images/product-2x.jpg 2x" alt="Lorem Widget" title="Lorem Widget"/></td>
                                         <td>Lorem Widget</td>
                                         <td>1</td>
                                     </tr>
                                 </tbody>
                             </table>
+
+                        </div>
+                    </div>
+                    <div class="frame">
+                        <div class="frame__contents">
+                            <div class="checkbox promo-opt-in">
+                                <input type="checkbox" name="promo-opt-in" id="promo-opt-in" title="Opt-in for the Rise &amp; Shine program" />
+                                <label for="promo-opt-in">With our "Rise &amp; Shine" beta program, you get early access to new features, but they may not always work perfectly. You can change your beta preference at any time after you join.</label>
+                            </div>
                         </div>
                     </div>
                     <div class="frame">
@@ -82,11 +91,15 @@ class Checkout extends Layout
                                 </div>
                             </div>
                             <div class="form-field form-field--required">
-                                <label class="form-field__label" for="billing_address_line1">Street Address: <span class="form-field__label-required"> (required)</span></label>
+                                <label class="form-field__label" for="billing_address_line1">Street Address Line 1: <span class="form-field__label-required"> (required)</span></label>
                                 <div class="form-field__contents">
-                                    <div class="textarea__container">
-                                        <textarea name="billing_address_line1" id="billing_address_line1" class="textarea" rows="2" cols="35"></textarea>
-                                    </div>
+                                    <input name="billing_address_line1" id="billing_address_line1" class="entry" />
+                                </div>
+                            </div>
+                            <div class="form-field form-field--required">
+                                <label class="form-field__label" for="billing_address_line2">Street Address Line 2:</label>
+                                <div class="form-field__contents">
+                                    <input name="billing_address_line2" id="billing_address_line2" class="entry" />
                                 </div>
                             </div>
                             <div class="form-field form-field--required">
@@ -103,6 +116,12 @@ class Checkout extends Layout
                             </div>
                         </div>
                     </div>
+                    <div class="frame">
+                        <div class="frame__contents form-submit">
+                            <input type="submit" name="submit" value="Place Order" />
+                        </div>
+                    </div>
+
                 </form>
             HTML;
     }
