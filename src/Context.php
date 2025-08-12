@@ -12,4 +12,5 @@ class Context
 
     public string $body = '';
 
+    public array $posts = [];
 }

@@ -26,9 +26,7 @@ class PostDetails extends Controller
         } else {
             $context->title = $this->post->title;
             $context->content = $this->params[0];
-
-            $parsedown = new \Parsedown();
-            $context->body = $parsedown->text($this->post->body);
+            $context->body = $this->post->getBodyHtml();
         }
 
         return $context;

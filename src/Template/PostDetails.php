@@ -13,6 +13,9 @@ class PostDetails extends Layout
             <article>
                 {$context->body}
             </article>
+            <footer>
+                <a href="/posts">&lsaquo; All Posts</a>
+            </footer>
             HTML;
     }
 }
