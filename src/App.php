@@ -22,10 +22,12 @@ class App
                 if (!empty($cli_script)) {
                     $cli_script->run();
                     $cli_script->finish();
+                    return true;
                 }
-            } else {
-                echo "You must specify the CLI script to run.\n";
             }
+
+            $scripts = self::getScripts();
+            echo "Usage: php src/index.php " . (implode('|', $scripts)) . "\n";
         }
         else {
             $path = is_string($_SERVER['REQUEST_URI'])
@@ -69,4 +71,23 @@ class App
 
         return $controller;
     }
+
+
+
+    /**
+     * Get the non-abstract cli class files
+     *
+     * Cli.php is removed by setting its name to a blank string, then
+     * calling array_filter.
+     */
+    public static function getScripts() {
+        $files = glob(APP_SRC .'/Cli/*.php');
+        $scripts = array_values(array_filter(array_map(function($item) {
+            $item = basename($item);
+            $item = str_replace(['Cli.php', '.php'], ['', ''], $item);
+            return $item;
+        }, $files)));
+        return $scripts;
+    }
+
 }

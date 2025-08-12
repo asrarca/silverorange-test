@@ -10,6 +10,7 @@ class ImportPosts extends Cli {
         if ($this->truncateTable()) {
             $this->insertData();
         }
+        return true;
     }
 
     private function insertData() {
