@@ -2,7 +2,7 @@
 
 namespace silverorange\DevTest\Cli;
 
-class Cli {
+abstract class Cli {
 
     protected \PDO $db;
 
@@ -14,16 +14,13 @@ class Cli {
         $this->start_time = microtime(true);
     }
 
-    public function run() {
-
-    }
+    abstract public function run();
 
     protected function log($message)
     {
         $timestamp = date('Y-m-d H:i:s');
         echo " $timestamp | $message\n";
     }
-
 
     public function finish()
     {
@@ -32,7 +29,6 @@ class Cli {
         $class_name = self::removeNamespace(get_class($this));
         echo "\n$class_name process completed in $elapsed seconds.\n";
     }
-
 
     /**
      * Convenience function to remove namespace from full class name.
