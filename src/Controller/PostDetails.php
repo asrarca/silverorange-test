@@ -26,6 +26,9 @@ class PostDetails extends Controller
         } else {
             $context->title = $this->post->title;
             $context->content = $this->params[0];
+
+            $parsedown = new \Parsedown();
+            $context->body = $parsedown->text($this->post->body);
         }
 
         return $context;
@@ -52,6 +55,11 @@ class PostDetails extends Controller
     protected function loadData(): void
     {
         // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        $sql = "SELECT * FROM posts where id = :id";
+        $statement = $this->db->prepare($sql);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, 'silverorange\DevTest\Model\Post');
+        $statement->execute([':id' => $this->params[0]]);
+
+        $this->post = $statement->fetch();
     }
 }
