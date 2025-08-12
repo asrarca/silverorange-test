@@ -11,24 +11,40 @@ class App
         $this->db = $db;
     }
 
-    public function run(): bool
+    public function run($cli_args = []): bool
     {
-        $path = is_string($_SERVER['REQUEST_URI'])
-            ? $_SERVER['REQUEST_URI']
-            : '';
-
-        // Serve static assets.
-        if (preg_match('@^/(assets|images|product-images)(/|$)@', $path) === 1) {
-            return false;
+        if (!empty($cli_args)) {
+            if (isset($cli_args[1])) {
+                $cli_script = match ($cli_args[1]) {
+                    'ImportPosts', 'import-posts' => new Cli\ImportPosts($this->db),
+                    default => null,
+                };
+                if (!empty($cli_script)) {
+                    $cli_script->run();
+                    $cli_script->finish();
+                }
+            } else {
+                echo "You must specify the CLI script to run.\n";
+            }
         }
+        else {
+            $path = is_string($_SERVER['REQUEST_URI'])
+                ? $_SERVER['REQUEST_URI']
+                : '';
 
-        $controller = $this->getController($path);
-        $context = $controller->getContext();
-        $template = $controller->getTemplate();
+            // Serve static assets.
+            if (preg_match('@^/(assets|images|product-images)(/|$)@', $path) === 1) {
+                return false;
+            }
 
-        $controller->sendHeaders();
+            $controller = $this->getController($path);
+            $context = $controller->getContext();
+            $template = $controller->getTemplate();
 
-        echo $template->render($context);
+            $controller->sendHeaders();
+
+            echo $template->render($context);
+        }
 
         return true;
     }
