@@ -127,3 +127,26 @@ main {
 .form-submit {
   text-align: center;
 }
+
+.post-list {
+  padding: 0px;
+  margin: 0px;
+}
+.post-list > li {
+  margin-bottom: 20px;
+  list-style-type: none;
+  line-height: 1.4;
+}
+
+.post-list > li a {
+  font-weight: 700;
+}
+
+.post-list > li .author {
+  color: #777;
+}
+
+.post-list > li .date {
+  color: #777;
+  font-size: 12px;
+}

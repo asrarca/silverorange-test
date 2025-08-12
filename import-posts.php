@@ -1,4 +1,5 @@
 <?php
+
 namespace silverorange\DevTest;
 
 if (!php_sapi_name() === 'cli') {
@@ -6,14 +7,13 @@ if (!php_sapi_name() === 'cli') {
     die();
 }
 
-namespace silverorange\DevTest;
 require __DIR__ . '/vendor/autoload.php';
 
 $config = new Config();
 $db = (new Database($config->dsn))->getConnection();
-
 $files = glob(__DIR__ . '/data/*.json');
-foreach($files as $i => $file) {
+
+foreach ($files as $i => $file) {
     $row = json_decode(file_get_contents($file), true);
 
     // create string variables so the SQL statement below is easy to read.
