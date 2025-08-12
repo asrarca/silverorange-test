@@ -31,10 +31,14 @@ class PostIndex extends Controller
     {
         // TODO: Load posts from database here.
 
-        $sql = "SELECT posts.id, posts.title, posts.created_at, authors.full_name as author_name
+        $sql = "SELECT posts.id, posts.title, posts.created_at, authors.full_name as author
             FROM posts LEFT JOIN authors ON posts.author = authors.id";
         $statement = $this->db->query($sql);
-        $posts = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        $this->posts = $posts;
+        if ($statement) {
+            $posts = $statement->fetchAll(\PDO::FETCH_CLASS, 'silverorange\DevTest\Model\Post');
+            foreach ($posts as $post) {
+                array_push($this->posts, $post);
+            }
+        }
     }
 }

@@ -11,9 +11,9 @@ class PostIndex extends Layout
         $rows = [];
         foreach ($context->posts as $post) {
             $rows[] = '<li>
-                <a href="/posts/' . $post['id'] . '">' . $post['title'] . '</a>
-                <div class="author">by ' . $post['author_name'] . '</div>
-                <div class="date">' . date('F j Y', strtotime($post['created_at'])) . '</div>
+                <a href="/posts/' . $post->id . '">' . $post->title . '</a>
+                <div class="author">by ' . $post->author . '</div>
+                <div class="date">' . date('F j Y', strtotime($post->created_at)) . '</div>
             </li>';
         }
         $list = implode('', $rows);

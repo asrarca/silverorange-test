@@ -58,6 +58,9 @@ class PostDetails extends Controller
         $statement->setFetchMode(\PDO::FETCH_CLASS, 'silverorange\DevTest\Model\Post');
         $statement->execute([':id' => $this->params[0]]);
 
-        $this->post = $statement->fetch();
+        $results = $statement->fetch();
+        if (!empty($results)) {
+            $this->post = $results;
+        }
     }
 }

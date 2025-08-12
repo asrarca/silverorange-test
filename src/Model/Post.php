@@ -14,7 +14,7 @@ class Post
     /**
      * Returns the body as HTML instead of Markdown
      */
-    public function getBodyHtml()
+    public function getBodyHtml(): string
     {
         $parsedown = new \Parsedown();
         return $parsedown->text($this->body);
