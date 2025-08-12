@@ -16,7 +16,11 @@ class App
         if (!empty($cli_args)) {
             if (isset($cli_args[1])) {
                 $cli_script = match ($cli_args[1]) {
+                    // import-posts is an alias to ImportPosts, for those that
+                    // prefer lowercased cli arguments (like me)
                     'ImportPosts', 'import-posts' => new Cli\ImportPosts($this->db),
+                    // more scripts can be added here, with aliases, e.g.
+                    // 'ExampleScript', 'example-script' => new Cli\ExampleScript($this->db),
                     default => null,
                 };
                 if (!empty($cli_script)) {
@@ -26,6 +30,7 @@ class App
                 }
             }
 
+            // show a useful message if the user didn't invoke the cli properly
             $scripts = self::getScripts();
             echo "Usage: php src/index.php " . (implode('|', $scripts)) . "\n";
         }
