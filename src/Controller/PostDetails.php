@@ -8,12 +8,6 @@ use silverorange\DevTest\Model;
 
 class PostDetails extends Controller
 {
-    /**
-     * TODO: When this property is assigned in loadData this PHPStan override
-     * can be removed.
-     *
-     * @phpstan-ignore property.unusedType
-     */
     private ?Model\Post $post = null;
 
     public function getContext(): Context
@@ -55,12 +49,12 @@ class PostDetails extends Controller
         // TODO: Load post from database here. $this->params[0] is the post id.
         $sql = "SELECT * FROM posts where id = :id";
         $statement = $this->db->prepare($sql);
-        $statement->setFetchMode(\PDO::FETCH_CLASS, 'silverorange\DevTest\Model\Post');
+        $statement->setFetchMode(\PDO::FETCH_CLASS, Model\Post::class);
         $statement->execute([':id' => $this->params[0]]);
 
-        $results = $statement->fetch();
-        if (!empty($results)) {
-            $this->post = $results;
+        $result = $statement->fetch();
+        if (!empty($result)) {
+            $this->post = $result;
         }
     }
 }

@@ -35,7 +35,7 @@ class PostIndex extends Controller
             FROM posts LEFT JOIN authors ON posts.author = authors.id";
         $statement = $this->db->query($sql);
         if ($statement) {
-            $posts = $statement->fetchAll(\PDO::FETCH_CLASS, 'silverorange\DevTest\Model\Post');
+            $posts = $statement->fetchAll(\PDO::FETCH_CLASS, Post::class);
             foreach ($posts as $post) {
                 array_push($this->posts, $post);
             }
